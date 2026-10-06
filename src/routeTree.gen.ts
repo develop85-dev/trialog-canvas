@@ -10,15 +10,25 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as HaqidaRouteImport } from './routes/haqida'
 import { Route as IlmiyAsosRouteImport } from './routes/ilmiy-asos'
 import { Route as KirishRouteImport } from './routes/kirish'
 import { Route as MetodikaRouteImport } from './routes/metodika'
 import { Route as ModullarRouteImport } from './routes/modullar'
+import { Route as ParolniTiklashRouteImport } from './routes/parolni-tiklash'
+import { Route as YangiParolRouteImport } from './routes/yangi-parol'
+import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/admin.dashboard'
+import { Route as AuthenticatedStudentDashboardRouteImport } from './routes/_authenticated/student.dashboard'
+import { Route as AuthenticatedTeacherDashboardRouteImport } from './routes/_authenticated/teacher.dashboard'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
 } as any)
 const HaqidaRoute = HaqidaRouteImport.update({
@@ -46,6 +56,34 @@ const ModullarRoute = ModullarRouteImport.update({
   path: '/modullar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ParolniTiklashRoute = ParolniTiklashRouteImport.update({
+  id: '/parolni-tiklash',
+  path: '/parolni-tiklash',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const YangiParolRoute = YangiParolRouteImport.update({
+  id: '/yangi-parol',
+  path: '/yangi-parol',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAdminDashboardRoute =
+  AuthenticatedAdminDashboardRouteImport.update({
+    id: '/admin/dashboard',
+    path: '/admin/dashboard',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedStudentDashboardRoute =
+  AuthenticatedStudentDashboardRouteImport.update({
+    id: '/student/dashboard',
+    path: '/student/dashboard',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedTeacherDashboardRoute =
+  AuthenticatedTeacherDashboardRouteImport.update({
+    id: '/teacher/dashboard',
+    path: '/teacher/dashboard',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +92,11 @@ export interface FileRoutesByFullPath {
   '/kirish': typeof KirishRoute
   '/metodika': typeof MetodikaRoute
   '/modullar': typeof ModullarRoute
+  '/parolni-tiklash': typeof ParolniTiklashRoute
+  '/yangi-parol': typeof YangiParolRoute
+  '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
+  '/student/dashboard': typeof AuthenticatedStudentDashboardRoute
+  '/teacher/dashboard': typeof AuthenticatedTeacherDashboardRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,39 +105,80 @@ export interface FileRoutesByTo {
   '/kirish': typeof KirishRoute
   '/metodika': typeof MetodikaRoute
   '/modullar': typeof ModullarRoute
+  '/parolni-tiklash': typeof ParolniTiklashRoute
+  '/yangi-parol': typeof YangiParolRoute
+  '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
+  '/student/dashboard': typeof AuthenticatedStudentDashboardRoute
+  '/teacher/dashboard': typeof AuthenticatedTeacherDashboardRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/haqida': typeof HaqidaRoute
   '/ilmiy-asos': typeof IlmiyAsosRoute
   '/kirish': typeof KirishRoute
   '/metodika': typeof MetodikaRoute
   '/modullar': typeof ModullarRoute
+  '/parolni-tiklash': typeof ParolniTiklashRoute
+  '/yangi-parol': typeof YangiParolRoute
+  '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
+  '/_authenticated/student/dashboard': typeof AuthenticatedStudentDashboardRoute
+  '/_authenticated/teacher/dashboard': typeof AuthenticatedTeacherDashboardRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/haqida' | '/ilmiy-asos' | '/kirish' | '/metodika' | '/modullar'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/haqida' | '/ilmiy-asos' | '/kirish' | '/metodika' | '/modullar'
-  id:
-    | '__root__'
     | '/'
     | '/haqida'
     | '/ilmiy-asos'
     | '/kirish'
     | '/metodika'
     | '/modullar'
+    | '/parolni-tiklash'
+    | '/yangi-parol'
+    | '/admin/dashboard'
+    | '/student/dashboard'
+    | '/teacher/dashboard'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/haqida'
+    | '/ilmiy-asos'
+    | '/kirish'
+    | '/metodika'
+    | '/modullar'
+    | '/parolni-tiklash'
+    | '/yangi-parol'
+    | '/admin/dashboard'
+    | '/student/dashboard'
+    | '/teacher/dashboard'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/haqida'
+    | '/ilmiy-asos'
+    | '/kirish'
+    | '/metodika'
+    | '/modullar'
+    | '/parolni-tiklash'
+    | '/yangi-parol'
+    | '/_authenticated/admin/dashboard'
+    | '/_authenticated/student/dashboard'
+    | '/_authenticated/teacher/dashboard'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   HaqidaRoute: typeof HaqidaRoute
   IlmiyAsosRoute: typeof IlmiyAsosRoute
   KirishRoute: typeof KirishRoute
   MetodikaRoute: typeof MetodikaRoute
   ModullarRoute: typeof ModullarRoute
+  ParolniTiklashRoute: typeof ParolniTiklashRoute
+  YangiParolRoute: typeof YangiParolRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -104,6 +188,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/haqida': {
@@ -141,16 +232,69 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModullarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/parolni-tiklash': {
+      id: '/parolni-tiklash'
+      path: '/parolni-tiklash'
+      fullPath: '/parolni-tiklash'
+      preLoaderRoute: typeof ParolniTiklashRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/yangi-parol': {
+      id: '/yangi-parol'
+      path: '/yangi-parol'
+      fullPath: '/yangi-parol'
+      preLoaderRoute: typeof YangiParolRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/admin/dashboard': {
+      id: '/_authenticated/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AuthenticatedAdminDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/student/dashboard': {
+      id: '/_authenticated/student/dashboard'
+      path: '/student/dashboard'
+      fullPath: '/student/dashboard'
+      preLoaderRoute: typeof AuthenticatedStudentDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/teacher/dashboard': {
+      id: '/_authenticated/teacher/dashboard'
+      path: '/teacher/dashboard'
+      fullPath: '/teacher/dashboard'
+      preLoaderRoute: typeof AuthenticatedTeacherDashboardRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminDashboardRoute: typeof AuthenticatedAdminDashboardRoute
+  AuthenticatedStudentDashboardRoute: typeof AuthenticatedStudentDashboardRoute
+  AuthenticatedTeacherDashboardRoute: typeof AuthenticatedTeacherDashboardRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminDashboardRoute: AuthenticatedAdminDashboardRoute,
+  AuthenticatedStudentDashboardRoute: AuthenticatedStudentDashboardRoute,
+  AuthenticatedTeacherDashboardRoute: AuthenticatedTeacherDashboardRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   HaqidaRoute: HaqidaRoute,
   IlmiyAsosRoute: IlmiyAsosRoute,
   KirishRoute: KirishRoute,
   MetodikaRoute: MetodikaRoute,
   ModullarRoute: ModullarRoute,
+  ParolniTiklashRoute: ParolniTiklashRoute,
+  YangiParolRoute: YangiParolRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
