@@ -1,0 +1,11 @@
+# TRIALOG roadmap
+- [x] Phase 1: Design system + public website
+- [ ] Phase 2: Auth + roles + protected routes (needs Lovable Cloud — awaiting user go-ahead)
+- [ ] Phase 3: Student dashboard + learning path
+- [ ] Phase 4: SO‘Z + MATN
+- [ ] Phase 5: MUNOZARA
+- [ ] Phase 6: OYNA + portfolio
+- [ ] Phase 7: Teacher panel
+- [ ] Phase 8: Admin panel
+- [ ] Phase 9: Database + RLS + persistence
+- [ ] Phase 10: Analytics + notifications + polish
