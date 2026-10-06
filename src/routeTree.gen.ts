@@ -10,33 +10,91 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as HaqidaRouteImport } from './routes/haqida'
+import { Route as IlmiyAsosRouteImport } from './routes/ilmiy-asos'
+import { Route as KirishRouteImport } from './routes/kirish'
+import { Route as MetodikaRouteImport } from './routes/metodika'
+import { Route as ModullarRouteImport } from './routes/modullar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HaqidaRoute = HaqidaRouteImport.update({
+  id: '/haqida',
+  path: '/haqida',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IlmiyAsosRoute = IlmiyAsosRouteImport.update({
+  id: '/ilmiy-asos',
+  path: '/ilmiy-asos',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KirishRoute = KirishRouteImport.update({
+  id: '/kirish',
+  path: '/kirish',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MetodikaRoute = MetodikaRouteImport.update({
+  id: '/metodika',
+  path: '/metodika',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModullarRoute = ModullarRouteImport.update({
+  id: '/modullar',
+  path: '/modullar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/haqida': typeof HaqidaRoute
+  '/ilmiy-asos': typeof IlmiyAsosRoute
+  '/kirish': typeof KirishRoute
+  '/metodika': typeof MetodikaRoute
+  '/modullar': typeof ModullarRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/haqida': typeof HaqidaRoute
+  '/ilmiy-asos': typeof IlmiyAsosRoute
+  '/kirish': typeof KirishRoute
+  '/metodika': typeof MetodikaRoute
+  '/modullar': typeof ModullarRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/haqida': typeof HaqidaRoute
+  '/ilmiy-asos': typeof IlmiyAsosRoute
+  '/kirish': typeof KirishRoute
+  '/metodika': typeof MetodikaRoute
+  '/modullar': typeof ModullarRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/haqida' | '/ilmiy-asos' | '/kirish' | '/metodika' | '/modullar'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/haqida' | '/ilmiy-asos' | '/kirish' | '/metodika' | '/modullar'
+  id:
+    | '__root__'
+    | '/'
+    | '/haqida'
+    | '/ilmiy-asos'
+    | '/kirish'
+    | '/metodika'
+    | '/modullar'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  HaqidaRoute: typeof HaqidaRoute
+  IlmiyAsosRoute: typeof IlmiyAsosRoute
+  KirishRoute: typeof KirishRoute
+  MetodikaRoute: typeof MetodikaRoute
+  ModullarRoute: typeof ModullarRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +106,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/haqida': {
+      id: '/haqida'
+      path: '/haqida'
+      fullPath: '/haqida'
+      preLoaderRoute: typeof HaqidaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ilmiy-asos': {
+      id: '/ilmiy-asos'
+      path: '/ilmiy-asos'
+      fullPath: '/ilmiy-asos'
+      preLoaderRoute: typeof IlmiyAsosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kirish': {
+      id: '/kirish'
+      path: '/kirish'
+      fullPath: '/kirish'
+      preLoaderRoute: typeof KirishRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/metodika': {
+      id: '/metodika'
+      path: '/metodika'
+      fullPath: '/metodika'
+      preLoaderRoute: typeof MetodikaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modullar': {
+      id: '/modullar'
+      path: '/modullar'
+      fullPath: '/modullar'
+      preLoaderRoute: typeof ModullarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  HaqidaRoute: HaqidaRoute,
+  IlmiyAsosRoute: IlmiyAsosRoute,
+  KirishRoute: KirishRoute,
+  MetodikaRoute: MetodikaRoute,
+  ModullarRoute: ModullarRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
