@@ -1,7 +1,7 @@
 # TRIALOG roadmap
 - [x] Phase 1: Design system + public website
 - [x] Phase 2: Auth + roles + protected routes
-- [ ] Phase 3: Student dashboard + learning path
+- [x] Phase 3: Student dashboard + learning path
 - [ ] Phase 4: SO‘Z + MATN
 - [ ] Phase 5: MUNOZARA
 - [ ] Phase 6: OYNA + portfolio
