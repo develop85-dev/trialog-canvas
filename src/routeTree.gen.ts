@@ -18,6 +18,10 @@ import { Route as MetodikaRouteImport } from './routes/metodika'
 import { Route as ModullarRouteImport } from './routes/modullar'
 import { Route as ParolniTiklashRouteImport } from './routes/parolni-tiklash'
 import { Route as YangiParolRouteImport } from './routes/yangi-parol'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
+import { Route as AuthenticatedProfilRouteImport } from './routes/_authenticated/profil'
+import { Route as AuthenticatedStudentRouteImport } from './routes/_authenticated/student'
+import { Route as AuthenticatedTeacherRouteImport } from './routes/_authenticated/teacher'
 import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/admin.dashboard'
 import { Route as AuthenticatedAdminFoydalanuvchilarRouteImport } from './routes/_authenticated/admin.foydalanuvchilar'
 import { Route as AuthenticatedStudentDashboardRouteImport } from './routes/_authenticated/student.dashboard'
@@ -75,75 +79,95 @@ const YangiParolRoute = YangiParolRouteImport.update({
   path: '/yangi-parol',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedProfilRoute = AuthenticatedProfilRouteImport.update({
+  id: '/profil',
+  path: '/profil',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedStudentRoute = AuthenticatedStudentRouteImport.update({
+  id: '/student',
+  path: '/student',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedTeacherRoute = AuthenticatedTeacherRouteImport.update({
+  id: '/teacher',
+  path: '/teacher',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedAdminDashboardRoute =
   AuthenticatedAdminDashboardRouteImport.update({
-    id: '/admin/dashboard',
-    path: '/admin/dashboard',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 const AuthenticatedAdminFoydalanuvchilarRoute =
   AuthenticatedAdminFoydalanuvchilarRouteImport.update({
-    id: '/admin/foydalanuvchilar',
-    path: '/admin/foydalanuvchilar',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/foydalanuvchilar',
+    path: '/foydalanuvchilar',
+    getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 const AuthenticatedStudentDashboardRoute =
   AuthenticatedStudentDashboardRouteImport.update({
-    id: '/student/dashboard',
-    path: '/student/dashboard',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
 const AuthenticatedStudentMatnRoute =
   AuthenticatedStudentMatnRouteImport.update({
-    id: '/student/matn',
-    path: '/student/matn',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/matn',
+    path: '/matn',
+    getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
 const AuthenticatedStudentMunozaraRoute =
   AuthenticatedStudentMunozaraRouteImport.update({
-    id: '/student/munozara',
-    path: '/student/munozara',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/munozara',
+    path: '/munozara',
+    getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
 const AuthenticatedStudentNatijalarRoute =
   AuthenticatedStudentNatijalarRouteImport.update({
-    id: '/student/natijalar',
-    path: '/student/natijalar',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/natijalar',
+    path: '/natijalar',
+    getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
 const AuthenticatedStudentOynaRoute =
   AuthenticatedStudentOynaRouteImport.update({
-    id: '/student/oyna',
-    path: '/student/oyna',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/oyna',
+    path: '/oyna',
+    getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
 const AuthenticatedStudentPortfolioRoute =
   AuthenticatedStudentPortfolioRouteImport.update({
-    id: '/student/portfolio',
-    path: '/student/portfolio',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/portfolio',
+    path: '/portfolio',
+    getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
 const AuthenticatedStudentSozRoute = AuthenticatedStudentSozRouteImport.update({
-  id: '/student/soz',
-  path: '/student/soz',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  id: '/soz',
+  path: '/soz',
+  getParentRoute: () => AuthenticatedStudentRoute,
 } as any)
 const AuthenticatedStudentTopshiriqlarRoute =
   AuthenticatedStudentTopshiriqlarRouteImport.update({
-    id: '/student/topshiriqlar',
-    path: '/student/topshiriqlar',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/topshiriqlar',
+    path: '/topshiriqlar',
+    getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
 const AuthenticatedStudentYolRoute = AuthenticatedStudentYolRouteImport.update({
-  id: '/student/yol',
-  path: '/student/yol',
-  getParentRoute: () => AuthenticatedRouteRoute,
+  id: '/yol',
+  path: '/yol',
+  getParentRoute: () => AuthenticatedStudentRoute,
 } as any)
 const AuthenticatedTeacherDashboardRoute =
   AuthenticatedTeacherDashboardRouteImport.update({
-    id: '/teacher/dashboard',
-    path: '/teacher/dashboard',
-    getParentRoute: () => AuthenticatedRouteRoute,
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedTeacherRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -155,6 +179,10 @@ export interface FileRoutesByFullPath {
   '/modullar': typeof ModullarRoute
   '/parolni-tiklash': typeof ParolniTiklashRoute
   '/yangi-parol': typeof YangiParolRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/profil': typeof AuthenticatedProfilRoute
+  '/student': typeof AuthenticatedStudentRouteWithChildren
+  '/teacher': typeof AuthenticatedTeacherRouteWithChildren
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/foydalanuvchilar': typeof AuthenticatedAdminFoydalanuvchilarRoute
   '/student/dashboard': typeof AuthenticatedStudentDashboardRoute
@@ -177,6 +205,10 @@ export interface FileRoutesByTo {
   '/modullar': typeof ModullarRoute
   '/parolni-tiklash': typeof ParolniTiklashRoute
   '/yangi-parol': typeof YangiParolRoute
+  '/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/profil': typeof AuthenticatedProfilRoute
+  '/student': typeof AuthenticatedStudentRouteWithChildren
+  '/teacher': typeof AuthenticatedTeacherRouteWithChildren
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/foydalanuvchilar': typeof AuthenticatedAdminFoydalanuvchilarRoute
   '/student/dashboard': typeof AuthenticatedStudentDashboardRoute
@@ -201,6 +233,10 @@ export interface FileRoutesById {
   '/modullar': typeof ModullarRoute
   '/parolni-tiklash': typeof ParolniTiklashRoute
   '/yangi-parol': typeof YangiParolRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
+  '/_authenticated/profil': typeof AuthenticatedProfilRoute
+  '/_authenticated/student': typeof AuthenticatedStudentRouteWithChildren
+  '/_authenticated/teacher': typeof AuthenticatedTeacherRouteWithChildren
   '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/_authenticated/admin/foydalanuvchilar': typeof AuthenticatedAdminFoydalanuvchilarRoute
   '/_authenticated/student/dashboard': typeof AuthenticatedStudentDashboardRoute
@@ -225,6 +261,10 @@ export interface FileRouteTypes {
     | '/modullar'
     | '/parolni-tiklash'
     | '/yangi-parol'
+    | '/admin'
+    | '/profil'
+    | '/student'
+    | '/teacher'
     | '/admin/dashboard'
     | '/admin/foydalanuvchilar'
     | '/student/dashboard'
@@ -247,6 +287,10 @@ export interface FileRouteTypes {
     | '/modullar'
     | '/parolni-tiklash'
     | '/yangi-parol'
+    | '/admin'
+    | '/profil'
+    | '/student'
+    | '/teacher'
     | '/admin/dashboard'
     | '/admin/foydalanuvchilar'
     | '/student/dashboard'
@@ -270,6 +314,10 @@ export interface FileRouteTypes {
     | '/modullar'
     | '/parolni-tiklash'
     | '/yangi-parol'
+    | '/_authenticated/admin'
+    | '/_authenticated/profil'
+    | '/_authenticated/student'
+    | '/_authenticated/teacher'
     | '/_authenticated/admin/dashboard'
     | '/_authenticated/admin/foydalanuvchilar'
     | '/_authenticated/student/dashboard'
@@ -361,96 +409,136 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof YangiParolRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/profil': {
+      id: '/_authenticated/profil'
+      path: '/profil'
+      fullPath: '/profil'
+      preLoaderRoute: typeof AuthenticatedProfilRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/student': {
+      id: '/_authenticated/student'
+      path: '/student'
+      fullPath: '/student'
+      preLoaderRoute: typeof AuthenticatedStudentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/teacher': {
+      id: '/_authenticated/teacher'
+      path: '/teacher'
+      fullPath: '/teacher'
+      preLoaderRoute: typeof AuthenticatedTeacherRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/admin/dashboard': {
       id: '/_authenticated/admin/dashboard'
-      path: '/admin/dashboard'
+      path: '/dashboard'
       fullPath: '/admin/dashboard'
       preLoaderRoute: typeof AuthenticatedAdminDashboardRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/admin/foydalanuvchilar': {
       id: '/_authenticated/admin/foydalanuvchilar'
-      path: '/admin/foydalanuvchilar'
+      path: '/foydalanuvchilar'
       fullPath: '/admin/foydalanuvchilar'
       preLoaderRoute: typeof AuthenticatedAdminFoydalanuvchilarRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedAdminRoute
     }
     '/_authenticated/student/dashboard': {
       id: '/_authenticated/student/dashboard'
-      path: '/student/dashboard'
+      path: '/dashboard'
       fullPath: '/student/dashboard'
       preLoaderRoute: typeof AuthenticatedStudentDashboardRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
     '/_authenticated/student/matn': {
       id: '/_authenticated/student/matn'
-      path: '/student/matn'
+      path: '/matn'
       fullPath: '/student/matn'
       preLoaderRoute: typeof AuthenticatedStudentMatnRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
     '/_authenticated/student/munozara': {
       id: '/_authenticated/student/munozara'
-      path: '/student/munozara'
+      path: '/munozara'
       fullPath: '/student/munozara'
       preLoaderRoute: typeof AuthenticatedStudentMunozaraRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
     '/_authenticated/student/natijalar': {
       id: '/_authenticated/student/natijalar'
-      path: '/student/natijalar'
+      path: '/natijalar'
       fullPath: '/student/natijalar'
       preLoaderRoute: typeof AuthenticatedStudentNatijalarRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
     '/_authenticated/student/oyna': {
       id: '/_authenticated/student/oyna'
-      path: '/student/oyna'
+      path: '/oyna'
       fullPath: '/student/oyna'
       preLoaderRoute: typeof AuthenticatedStudentOynaRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
     '/_authenticated/student/portfolio': {
       id: '/_authenticated/student/portfolio'
-      path: '/student/portfolio'
+      path: '/portfolio'
       fullPath: '/student/portfolio'
       preLoaderRoute: typeof AuthenticatedStudentPortfolioRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
     '/_authenticated/student/soz': {
       id: '/_authenticated/student/soz'
-      path: '/student/soz'
+      path: '/soz'
       fullPath: '/student/soz'
       preLoaderRoute: typeof AuthenticatedStudentSozRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
     '/_authenticated/student/topshiriqlar': {
       id: '/_authenticated/student/topshiriqlar'
-      path: '/student/topshiriqlar'
+      path: '/topshiriqlar'
       fullPath: '/student/topshiriqlar'
       preLoaderRoute: typeof AuthenticatedStudentTopshiriqlarRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
     '/_authenticated/student/yol': {
       id: '/_authenticated/student/yol'
-      path: '/student/yol'
+      path: '/yol'
       fullPath: '/student/yol'
       preLoaderRoute: typeof AuthenticatedStudentYolRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
     '/_authenticated/teacher/dashboard': {
       id: '/_authenticated/teacher/dashboard'
-      path: '/teacher/dashboard'
+      path: '/dashboard'
       fullPath: '/teacher/dashboard'
       preLoaderRoute: typeof AuthenticatedTeacherDashboardRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
+      parentRoute: typeof AuthenticatedTeacherRoute
     }
   }
 }
 
-interface AuthenticatedRouteRouteChildren {
+interface AuthenticatedAdminRouteChildren {
   AuthenticatedAdminDashboardRoute: typeof AuthenticatedAdminDashboardRoute
   AuthenticatedAdminFoydalanuvchilarRoute: typeof AuthenticatedAdminFoydalanuvchilarRoute
+}
+
+const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminDashboardRoute: AuthenticatedAdminDashboardRoute,
+  AuthenticatedAdminFoydalanuvchilarRoute:
+    AuthenticatedAdminFoydalanuvchilarRoute,
+}
+
+const AuthenticatedAdminRouteWithChildren =
+  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
+
+interface AuthenticatedStudentRouteChildren {
   AuthenticatedStudentDashboardRoute: typeof AuthenticatedStudentDashboardRoute
   AuthenticatedStudentMatnRoute: typeof AuthenticatedStudentMatnRoute
   AuthenticatedStudentMunozaraRoute: typeof AuthenticatedStudentMunozaraRoute
@@ -460,13 +548,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedStudentSozRoute: typeof AuthenticatedStudentSozRoute
   AuthenticatedStudentTopshiriqlarRoute: typeof AuthenticatedStudentTopshiriqlarRoute
   AuthenticatedStudentYolRoute: typeof AuthenticatedStudentYolRoute
-  AuthenticatedTeacherDashboardRoute: typeof AuthenticatedTeacherDashboardRoute
 }
 
-const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminDashboardRoute: AuthenticatedAdminDashboardRoute,
-  AuthenticatedAdminFoydalanuvchilarRoute:
-    AuthenticatedAdminFoydalanuvchilarRoute,
+const AuthenticatedStudentRouteChildren: AuthenticatedStudentRouteChildren = {
   AuthenticatedStudentDashboardRoute: AuthenticatedStudentDashboardRoute,
   AuthenticatedStudentMatnRoute: AuthenticatedStudentMatnRoute,
   AuthenticatedStudentMunozaraRoute: AuthenticatedStudentMunozaraRoute,
@@ -476,7 +560,34 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedStudentSozRoute: AuthenticatedStudentSozRoute,
   AuthenticatedStudentTopshiriqlarRoute: AuthenticatedStudentTopshiriqlarRoute,
   AuthenticatedStudentYolRoute: AuthenticatedStudentYolRoute,
+}
+
+const AuthenticatedStudentRouteWithChildren =
+  AuthenticatedStudentRoute._addFileChildren(AuthenticatedStudentRouteChildren)
+
+interface AuthenticatedTeacherRouteChildren {
+  AuthenticatedTeacherDashboardRoute: typeof AuthenticatedTeacherDashboardRoute
+}
+
+const AuthenticatedTeacherRouteChildren: AuthenticatedTeacherRouteChildren = {
   AuthenticatedTeacherDashboardRoute: AuthenticatedTeacherDashboardRoute,
+}
+
+const AuthenticatedTeacherRouteWithChildren =
+  AuthenticatedTeacherRoute._addFileChildren(AuthenticatedTeacherRouteChildren)
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
+  AuthenticatedProfilRoute: typeof AuthenticatedProfilRoute
+  AuthenticatedStudentRoute: typeof AuthenticatedStudentRouteWithChildren
+  AuthenticatedTeacherRoute: typeof AuthenticatedTeacherRouteWithChildren
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
+  AuthenticatedProfilRoute: AuthenticatedProfilRoute,
+  AuthenticatedStudentRoute: AuthenticatedStudentRouteWithChildren,
+  AuthenticatedTeacherRoute: AuthenticatedTeacherRouteWithChildren,
 }
 
 const AuthenticatedRouteRouteWithChildren =
