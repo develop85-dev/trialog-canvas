@@ -14,6 +14,54 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_log: {
+        Row: {
+          created_at: string
+          id: string
+          module: string | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          module?: string | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          module?: string | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      module_progress: {
+        Row: {
+          id: string
+          module: string
+          percent: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          module: string
+          percent?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          module?: string
+          percent?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           created_at: string
