@@ -28,5 +28,4 @@ export const ADMIN_NAV: NavItem[] = [
   { to: "/teacher/dashboard", label: "O‘qituvchi paneli", icon: GraduationCap },
   { to: "/student/dashboard", label: "Talaba paneli", icon: Layers },
   { to: "/profil", label: "Profil", icon: User },
-  { to: "/admin/dashboard", label: "Sozlamalar", icon: Settings },
 ];

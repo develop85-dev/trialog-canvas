@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useEffect } from "react";
+import { dashboardPath, fetchRoles, primaryRole, useSession } from "@/lib/auth";
 
 const NAV = [
   { to: "/", label: "Bosh sahifa" },
@@ -27,6 +29,12 @@ export function Logo() {
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const { session } = useSession();
+  const [dash, setDash] = useState<ReturnType<typeof dashboardPath> | null>(null);
+  useEffect(() => {
+    if (!session) return setDash(null);
+    fetchRoles(session.user.id).then((r) => setDash(dashboardPath(primaryRole(r))));
+  }, [session]);
   return (
     <header className="sticky top-0 z-40 border-b bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
@@ -45,10 +53,10 @@ export function SiteHeader() {
           ))}
         </nav>
         <Link
-          to="/kirish"
+          to={dash ?? "/kirish"}
           className="hidden rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-card transition hover:opacity-90 lg:inline-flex"
         >
-          Platformaga kirish
+          {dash ? "Shaxsiy kabinet" : "Platformaga kirish"}
         </Link>
         <button className="lg:hidden" onClick={() => setOpen(!open)} aria-label="Menyu">
           {open ? <X /> : <Menu />}
