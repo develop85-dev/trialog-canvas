@@ -1,6 +1,6 @@
 # TRIALOG roadmap
 - [x] Phase 1: Design system + public website
-- [ ] Phase 2: Auth + roles + protected routes (needs Lovable Cloud — awaiting user go-ahead)
+- [x] Phase 2: Auth + roles + protected routes
 - [ ] Phase 3: Student dashboard + learning path
 - [ ] Phase 4: SO‘Z + MATN
 - [ ] Phase 5: MUNOZARA
