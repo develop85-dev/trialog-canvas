@@ -17,7 +17,7 @@ export function AppShell({ nav, children }: { nav: NavItem[]; children: ReactNod
   const { user, roles } = useRouteContext({ from: "/_authenticated" });
   const navigate = useNavigate();
   const qc = useQueryClient();
-  const name = (user.user_metadata?.full_name as string) || user.email;
+  const name = (user.user_metadata?.["full_name"] as string) || user.email;
 
   async function signOut() {
     await qc.cancelQueries();
