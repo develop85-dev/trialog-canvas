@@ -32,7 +32,7 @@ function Page() {
   const { data } = useQuery(progressQuery(user.id));
   const { data: activity } = useQuery(activityQuery(user.id));
   const modules = data?.modules ?? MODULES.map((m) => ({ ...m, percent: 0 }));
-  const next = modules.find((m) => m.percent < 100) ?? modules[0];
+  const next = modules.find((m) => m.percent < 100) ?? modules[0]!;
 
   return (
     <AppShell nav={STUDENT_NAV}>
