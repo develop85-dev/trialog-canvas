@@ -15,6 +15,13 @@
       "when": 1791336493562,
       "tag": "0001_module_progress",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791422984483,
+      "tag": "0002_soz_matn_content",
+      "breakpoints": true
     }
   ]
 }

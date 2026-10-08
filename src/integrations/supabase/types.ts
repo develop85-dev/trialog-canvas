@@ -38,6 +38,71 @@ export type Database = {
         }
         Relationships: []
       }
+      exercise_results: {
+        Row: {
+          answers: Json
+          created_at: string
+          exercise_id: string
+          id: string
+          score: number
+          user_id: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          exercise_id: string
+          id?: string
+          score: number
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          exercise_id?: string
+          id?: string
+          score?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "exercise_results_exercise_id_fkey"
+            columns: ["exercise_id"]
+            isOneToOne: false
+            referencedRelation: "exercises"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      exercises: {
+        Row: {
+          answer_key: Json
+          created_at: string
+          id: string
+          kind: string
+          module: string
+          questions: Json
+          title: string
+        }
+        Insert: {
+          answer_key?: Json
+          created_at?: string
+          id?: string
+          kind?: string
+          module?: string
+          questions?: Json
+          title: string
+        }
+        Update: {
+          answer_key?: Json
+          created_at?: string
+          id?: string
+          kind?: string
+          module?: string
+          questions?: Json
+          title?: string
+        }
+        Relationships: []
+      }
       module_progress: {
         Row: {
           id: string
@@ -86,6 +151,77 @@ export type Database = {
         }
         Relationships: []
       }
+      text_responses: {
+        Row: {
+          answers: Json
+          created_at: string
+          id: string
+          text_id: string
+          user_id: string
+        }
+        Insert: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          text_id: string
+          user_id: string
+        }
+        Update: {
+          answers?: Json
+          created_at?: string
+          id?: string
+          text_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "text_responses_text_id_fkey"
+            columns: ["text_id"]
+            isOneToOne: false
+            referencedRelation: "texts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      texts: {
+        Row: {
+          body: string
+          context: string
+          created_at: string
+          id: string
+          key_words: string[]
+          notes: string[]
+          questions: Json
+          source: string
+          title: string
+          video_url: string | null
+        }
+        Insert: {
+          body: string
+          context?: string
+          created_at?: string
+          id?: string
+          key_words?: string[]
+          notes?: string[]
+          questions?: Json
+          source?: string
+          title: string
+          video_url?: string | null
+        }
+        Update: {
+          body?: string
+          context?: string
+          created_at?: string
+          id?: string
+          key_words?: string[]
+          notes?: string[]
+          questions?: Json
+          source?: string
+          title?: string
+          video_url?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
@@ -104,6 +240,48 @@ export type Database = {
         }
         Relationships: []
       }
+      vocab_items: {
+        Row: {
+          audio_url: string | null
+          category: string
+          created_at: string
+          cultural_note: string
+          definition: string
+          example: string
+          id: string
+          related_phrases: string[]
+          related_proverbs: string[]
+          translation: string
+          word: string
+        }
+        Insert: {
+          audio_url?: string | null
+          category?: string
+          created_at?: string
+          cultural_note?: string
+          definition?: string
+          example?: string
+          id?: string
+          related_phrases?: string[]
+          related_proverbs?: string[]
+          translation?: string
+          word: string
+        }
+        Update: {
+          audio_url?: string | null
+          category?: string
+          created_at?: string
+          cultural_note?: string
+          definition?: string
+          example?: string
+          id?: string
+          related_phrases?: string[]
+          related_proverbs?: string[]
+          translation?: string
+          word?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -115,6 +293,14 @@ export type Database = {
           _user_id: string
         }
         Returns: boolean
+      }
+      submit_exercise: {
+        Args: { _answers: Json; _exercise_id: string }
+        Returns: number
+      }
+      submit_text: {
+        Args: { _answers: Json; _text_id: string }
+        Returns: undefined
       }
     }
     Enums: {
