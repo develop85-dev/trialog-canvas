@@ -25,7 +25,6 @@ import { Route as AuthenticatedTeacherRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedAdminDashboardRouteImport } from './routes/_authenticated/admin.dashboard'
 import { Route as AuthenticatedAdminFoydalanuvchilarRouteImport } from './routes/_authenticated/admin.foydalanuvchilar'
 import { Route as AuthenticatedStudentDashboardRouteImport } from './routes/_authenticated/student.dashboard'
-import { Route as AuthenticatedStudentMatnRouteImport } from './routes/_authenticated/student.matn'
 import { Route as AuthenticatedStudentMunozaraRouteImport } from './routes/_authenticated/student.munozara'
 import { Route as AuthenticatedStudentNatijalarRouteImport } from './routes/_authenticated/student.natijalar'
 import { Route as AuthenticatedStudentOynaRouteImport } from './routes/_authenticated/student.oyna'
@@ -119,12 +118,6 @@ const AuthenticatedStudentDashboardRoute =
     path: '/dashboard',
     getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
-const AuthenticatedStudentMatnRoute =
-  AuthenticatedStudentMatnRouteImport.update({
-    id: '/matn',
-    path: '/matn',
-    getParentRoute: () => AuthenticatedStudentRoute,
-  } as any)
 const AuthenticatedStudentMunozaraRoute =
   AuthenticatedStudentMunozaraRouteImport.update({
     id: '/munozara',
@@ -173,15 +166,15 @@ const AuthenticatedTeacherDashboardRoute =
   } as any)
 const AuthenticatedStudentMatnIndexRoute =
   AuthenticatedStudentMatnIndexRouteImport.update({
-    id: '/',
-    path: '/',
-    getParentRoute: () => AuthenticatedStudentMatnRoute,
+    id: '/matn/',
+    path: '/matn/',
+    getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
 const AuthenticatedStudentMatnIdRoute =
   AuthenticatedStudentMatnIdRouteImport.update({
-    id: '/$id',
-    path: '/$id',
-    getParentRoute: () => AuthenticatedStudentMatnRoute,
+    id: '/matn/$id',
+    path: '/matn/$id',
+    getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
@@ -200,7 +193,6 @@ export interface FileRoutesByFullPath {
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/foydalanuvchilar': typeof AuthenticatedAdminFoydalanuvchilarRoute
   '/student/dashboard': typeof AuthenticatedStudentDashboardRoute
-  '/student/matn': typeof AuthenticatedStudentMatnRouteWithChildren
   '/student/munozara': typeof AuthenticatedStudentMunozaraRoute
   '/student/natijalar': typeof AuthenticatedStudentNatijalarRoute
   '/student/oyna': typeof AuthenticatedStudentOynaRoute
@@ -257,7 +249,6 @@ export interface FileRoutesById {
   '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/_authenticated/admin/foydalanuvchilar': typeof AuthenticatedAdminFoydalanuvchilarRoute
   '/_authenticated/student/dashboard': typeof AuthenticatedStudentDashboardRoute
-  '/_authenticated/student/matn': typeof AuthenticatedStudentMatnRouteWithChildren
   '/_authenticated/student/munozara': typeof AuthenticatedStudentMunozaraRoute
   '/_authenticated/student/natijalar': typeof AuthenticatedStudentNatijalarRoute
   '/_authenticated/student/oyna': typeof AuthenticatedStudentOynaRoute
@@ -287,7 +278,6 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/foydalanuvchilar'
     | '/student/dashboard'
-    | '/student/matn'
     | '/student/munozara'
     | '/student/natijalar'
     | '/student/oyna'
@@ -343,7 +333,6 @@ export interface FileRouteTypes {
     | '/_authenticated/admin/dashboard'
     | '/_authenticated/admin/foydalanuvchilar'
     | '/_authenticated/student/dashboard'
-    | '/_authenticated/student/matn'
     | '/_authenticated/student/munozara'
     | '/_authenticated/student/natijalar'
     | '/_authenticated/student/oyna'
@@ -482,13 +471,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedStudentDashboardRouteImport
       parentRoute: typeof AuthenticatedStudentRoute
     }
-    '/_authenticated/student/matn': {
-      id: '/_authenticated/student/matn'
-      path: '/matn'
-      fullPath: '/student/matn'
-      preLoaderRoute: typeof AuthenticatedStudentMatnRouteImport
-      parentRoute: typeof AuthenticatedStudentRoute
-    }
     '/_authenticated/student/munozara': {
       id: '/_authenticated/student/munozara'
       path: '/munozara'
@@ -547,17 +529,17 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/student/matn/': {
       id: '/_authenticated/student/matn/'
-      path: '/'
+      path: '/matn'
       fullPath: '/student/matn/'
       preLoaderRoute: typeof AuthenticatedStudentMatnIndexRouteImport
-      parentRoute: typeof AuthenticatedStudentMatnRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
     '/_authenticated/student/matn/$id': {
       id: '/_authenticated/student/matn/$id'
-      path: '/$id'
+      path: '/matn/$id'
       fullPath: '/student/matn/$id'
       preLoaderRoute: typeof AuthenticatedStudentMatnIdRouteImport
-      parentRoute: typeof AuthenticatedStudentMatnRoute
+      parentRoute: typeof AuthenticatedStudentRoute
     }
   }
 }
@@ -576,25 +558,8 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
 const AuthenticatedAdminRouteWithChildren =
   AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
 
-interface AuthenticatedStudentMatnRouteChildren {
-  AuthenticatedStudentMatnIdRoute: typeof AuthenticatedStudentMatnIdRoute
-  AuthenticatedStudentMatnIndexRoute: typeof AuthenticatedStudentMatnIndexRoute
-}
-
-const AuthenticatedStudentMatnRouteChildren: AuthenticatedStudentMatnRouteChildren =
-  {
-    AuthenticatedStudentMatnIdRoute: AuthenticatedStudentMatnIdRoute,
-    AuthenticatedStudentMatnIndexRoute: AuthenticatedStudentMatnIndexRoute,
-  }
-
-const AuthenticatedStudentMatnRouteWithChildren =
-  AuthenticatedStudentMatnRoute._addFileChildren(
-    AuthenticatedStudentMatnRouteChildren,
-  )
-
 interface AuthenticatedStudentRouteChildren {
   AuthenticatedStudentDashboardRoute: typeof AuthenticatedStudentDashboardRoute
-  AuthenticatedStudentMatnRoute: typeof AuthenticatedStudentMatnRouteWithChildren
   AuthenticatedStudentMunozaraRoute: typeof AuthenticatedStudentMunozaraRoute
   AuthenticatedStudentNatijalarRoute: typeof AuthenticatedStudentNatijalarRoute
   AuthenticatedStudentOynaRoute: typeof AuthenticatedStudentOynaRoute
@@ -602,11 +567,12 @@ interface AuthenticatedStudentRouteChildren {
   AuthenticatedStudentSozRoute: typeof AuthenticatedStudentSozRoute
   AuthenticatedStudentTopshiriqlarRoute: typeof AuthenticatedStudentTopshiriqlarRoute
   AuthenticatedStudentYolRoute: typeof AuthenticatedStudentYolRoute
+  AuthenticatedStudentMatnIdRoute: typeof AuthenticatedStudentMatnIdRoute
+  AuthenticatedStudentMatnIndexRoute: typeof AuthenticatedStudentMatnIndexRoute
 }
 
 const AuthenticatedStudentRouteChildren: AuthenticatedStudentRouteChildren = {
   AuthenticatedStudentDashboardRoute: AuthenticatedStudentDashboardRoute,
-  AuthenticatedStudentMatnRoute: AuthenticatedStudentMatnRouteWithChildren,
   AuthenticatedStudentMunozaraRoute: AuthenticatedStudentMunozaraRoute,
   AuthenticatedStudentNatijalarRoute: AuthenticatedStudentNatijalarRoute,
   AuthenticatedStudentOynaRoute: AuthenticatedStudentOynaRoute,
@@ -614,6 +580,8 @@ const AuthenticatedStudentRouteChildren: AuthenticatedStudentRouteChildren = {
   AuthenticatedStudentSozRoute: AuthenticatedStudentSozRoute,
   AuthenticatedStudentTopshiriqlarRoute: AuthenticatedStudentTopshiriqlarRoute,
   AuthenticatedStudentYolRoute: AuthenticatedStudentYolRoute,
+  AuthenticatedStudentMatnIdRoute: AuthenticatedStudentMatnIdRoute,
+  AuthenticatedStudentMatnIndexRoute: AuthenticatedStudentMatnIndexRoute,
 }
 
 const AuthenticatedStudentRouteWithChildren =

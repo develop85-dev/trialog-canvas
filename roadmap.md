@@ -2,7 +2,7 @@
 - [x] Phase 1: Design system + public website
 - [x] Phase 2: Auth + roles + protected routes
 - [x] Phase 3: Student dashboard + learning path
-- [ ] Phase 4: SO‘Z + MATN
+- [x] Phase 4: SO‘Z + MATN
 - [ ] Phase 5: MUNOZARA
 - [ ] Phase 6: OYNA + portfolio
 - [ ] Phase 7: Teacher panel
