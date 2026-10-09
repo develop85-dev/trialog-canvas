@@ -281,6 +281,33 @@ export type Database = {
         }
         Relationships: []
       }
+      reflections: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          kind: string
+          ratings: Json | null
+          user_id: string
+        }
+        Insert: {
+          body?: string
+          created_at?: string
+          id?: string
+          kind?: string
+          ratings?: Json | null
+          user_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          kind?: string
+          ratings?: Json | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       text_responses: {
         Row: {
           answers: Json
