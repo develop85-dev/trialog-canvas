@@ -3,7 +3,7 @@
 - [x] Phase 2: Auth + roles + protected routes
 - [x] Phase 3: Student dashboard + learning path
 - [x] Phase 4: SO‘Z + MATN
-- [ ] Phase 5: MUNOZARA
+- [x] Phase 5: MUNOZARA
 - [ ] Phase 6: OYNA + portfolio
 - [ ] Phase 7: Teacher panel
 - [ ] Phase 8: Admin panel

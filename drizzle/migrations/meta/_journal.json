@@ -22,6 +22,13 @@
       "when": 1791422984483,
       "tag": "0002_soz_matn_content",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1791559805986,
+      "tag": "0003_munozara",
+      "breakpoints": true
     }
   ]
 }
