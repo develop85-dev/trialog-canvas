@@ -35,6 +35,8 @@ import { Route as AuthenticatedStudentYolRouteImport } from './routes/_authentic
 import { Route as AuthenticatedTeacherDashboardRouteImport } from './routes/_authenticated/teacher.dashboard'
 import { Route as AuthenticatedStudentMatnIndexRouteImport } from './routes/_authenticated/student.matn.index'
 import { Route as AuthenticatedStudentMatnIdRouteImport } from './routes/_authenticated/student.matn.$id'
+import { Route as AuthenticatedStudentMunozaraIndexRouteImport } from './routes/_authenticated/student.munozara.index'
+import { Route as AuthenticatedStudentMunozaraIdRouteImport } from './routes/_authenticated/student.munozara.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -176,6 +178,18 @@ const AuthenticatedStudentMatnIdRoute =
     path: '/matn/$id',
     getParentRoute: () => AuthenticatedStudentRoute,
   } as any)
+const AuthenticatedStudentMunozaraIndexRoute =
+  AuthenticatedStudentMunozaraIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedStudentMunozaraRoute,
+  } as any)
+const AuthenticatedStudentMunozaraIdRoute =
+  AuthenticatedStudentMunozaraIdRouteImport.update({
+    id: '/$id',
+    path: '/$id',
+    getParentRoute: () => AuthenticatedStudentMunozaraRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -193,7 +207,7 @@ export interface FileRoutesByFullPath {
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/foydalanuvchilar': typeof AuthenticatedAdminFoydalanuvchilarRoute
   '/student/dashboard': typeof AuthenticatedStudentDashboardRoute
-  '/student/munozara': typeof AuthenticatedStudentMunozaraRoute
+  '/student/munozara': typeof AuthenticatedStudentMunozaraRouteWithChildren
   '/student/natijalar': typeof AuthenticatedStudentNatijalarRoute
   '/student/oyna': typeof AuthenticatedStudentOynaRoute
   '/student/portfolio': typeof AuthenticatedStudentPortfolioRoute
@@ -202,7 +216,9 @@ export interface FileRoutesByFullPath {
   '/student/yol': typeof AuthenticatedStudentYolRoute
   '/teacher/dashboard': typeof AuthenticatedTeacherDashboardRoute
   '/student/matn/$id': typeof AuthenticatedStudentMatnIdRoute
+  '/student/munozara/$id': typeof AuthenticatedStudentMunozaraIdRoute
   '/student/matn/': typeof AuthenticatedStudentMatnIndexRoute
+  '/student/munozara/': typeof AuthenticatedStudentMunozaraIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -220,7 +236,6 @@ export interface FileRoutesByTo {
   '/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/admin/foydalanuvchilar': typeof AuthenticatedAdminFoydalanuvchilarRoute
   '/student/dashboard': typeof AuthenticatedStudentDashboardRoute
-  '/student/munozara': typeof AuthenticatedStudentMunozaraRoute
   '/student/natijalar': typeof AuthenticatedStudentNatijalarRoute
   '/student/oyna': typeof AuthenticatedStudentOynaRoute
   '/student/portfolio': typeof AuthenticatedStudentPortfolioRoute
@@ -229,7 +244,9 @@ export interface FileRoutesByTo {
   '/student/yol': typeof AuthenticatedStudentYolRoute
   '/teacher/dashboard': typeof AuthenticatedTeacherDashboardRoute
   '/student/matn/$id': typeof AuthenticatedStudentMatnIdRoute
+  '/student/munozara/$id': typeof AuthenticatedStudentMunozaraIdRoute
   '/student/matn': typeof AuthenticatedStudentMatnIndexRoute
+  '/student/munozara': typeof AuthenticatedStudentMunozaraIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -249,7 +266,7 @@ export interface FileRoutesById {
   '/_authenticated/admin/dashboard': typeof AuthenticatedAdminDashboardRoute
   '/_authenticated/admin/foydalanuvchilar': typeof AuthenticatedAdminFoydalanuvchilarRoute
   '/_authenticated/student/dashboard': typeof AuthenticatedStudentDashboardRoute
-  '/_authenticated/student/munozara': typeof AuthenticatedStudentMunozaraRoute
+  '/_authenticated/student/munozara': typeof AuthenticatedStudentMunozaraRouteWithChildren
   '/_authenticated/student/natijalar': typeof AuthenticatedStudentNatijalarRoute
   '/_authenticated/student/oyna': typeof AuthenticatedStudentOynaRoute
   '/_authenticated/student/portfolio': typeof AuthenticatedStudentPortfolioRoute
@@ -258,7 +275,9 @@ export interface FileRoutesById {
   '/_authenticated/student/yol': typeof AuthenticatedStudentYolRoute
   '/_authenticated/teacher/dashboard': typeof AuthenticatedTeacherDashboardRoute
   '/_authenticated/student/matn/$id': typeof AuthenticatedStudentMatnIdRoute
+  '/_authenticated/student/munozara/$id': typeof AuthenticatedStudentMunozaraIdRoute
   '/_authenticated/student/matn/': typeof AuthenticatedStudentMatnIndexRoute
+  '/_authenticated/student/munozara/': typeof AuthenticatedStudentMunozaraIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -287,7 +306,9 @@ export interface FileRouteTypes {
     | '/student/yol'
     | '/teacher/dashboard'
     | '/student/matn/$id'
+    | '/student/munozara/$id'
     | '/student/matn/'
+    | '/student/munozara/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -305,7 +326,6 @@ export interface FileRouteTypes {
     | '/admin/dashboard'
     | '/admin/foydalanuvchilar'
     | '/student/dashboard'
-    | '/student/munozara'
     | '/student/natijalar'
     | '/student/oyna'
     | '/student/portfolio'
@@ -314,7 +334,9 @@ export interface FileRouteTypes {
     | '/student/yol'
     | '/teacher/dashboard'
     | '/student/matn/$id'
+    | '/student/munozara/$id'
     | '/student/matn'
+    | '/student/munozara'
   id:
     | '__root__'
     | '/'
@@ -342,7 +364,9 @@ export interface FileRouteTypes {
     | '/_authenticated/student/yol'
     | '/_authenticated/teacher/dashboard'
     | '/_authenticated/student/matn/$id'
+    | '/_authenticated/student/munozara/$id'
     | '/_authenticated/student/matn/'
+    | '/_authenticated/student/munozara/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -541,6 +565,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedStudentMatnIdRouteImport
       parentRoute: typeof AuthenticatedStudentRoute
     }
+    '/_authenticated/student/munozara/': {
+      id: '/_authenticated/student/munozara/'
+      path: '/'
+      fullPath: '/student/munozara/'
+      preLoaderRoute: typeof AuthenticatedStudentMunozaraIndexRouteImport
+      parentRoute: typeof AuthenticatedStudentMunozaraRoute
+    }
+    '/_authenticated/student/munozara/$id': {
+      id: '/_authenticated/student/munozara/$id'
+      path: '/$id'
+      fullPath: '/student/munozara/$id'
+      preLoaderRoute: typeof AuthenticatedStudentMunozaraIdRouteImport
+      parentRoute: typeof AuthenticatedStudentMunozaraRoute
+    }
   }
 }
 
@@ -558,9 +596,26 @@ const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
 const AuthenticatedAdminRouteWithChildren =
   AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
 
+interface AuthenticatedStudentMunozaraRouteChildren {
+  AuthenticatedStudentMunozaraIdRoute: typeof AuthenticatedStudentMunozaraIdRoute
+  AuthenticatedStudentMunozaraIndexRoute: typeof AuthenticatedStudentMunozaraIndexRoute
+}
+
+const AuthenticatedStudentMunozaraRouteChildren: AuthenticatedStudentMunozaraRouteChildren =
+  {
+    AuthenticatedStudentMunozaraIdRoute: AuthenticatedStudentMunozaraIdRoute,
+    AuthenticatedStudentMunozaraIndexRoute:
+      AuthenticatedStudentMunozaraIndexRoute,
+  }
+
+const AuthenticatedStudentMunozaraRouteWithChildren =
+  AuthenticatedStudentMunozaraRoute._addFileChildren(
+    AuthenticatedStudentMunozaraRouteChildren,
+  )
+
 interface AuthenticatedStudentRouteChildren {
   AuthenticatedStudentDashboardRoute: typeof AuthenticatedStudentDashboardRoute
-  AuthenticatedStudentMunozaraRoute: typeof AuthenticatedStudentMunozaraRoute
+  AuthenticatedStudentMunozaraRoute: typeof AuthenticatedStudentMunozaraRouteWithChildren
   AuthenticatedStudentNatijalarRoute: typeof AuthenticatedStudentNatijalarRoute
   AuthenticatedStudentOynaRoute: typeof AuthenticatedStudentOynaRoute
   AuthenticatedStudentPortfolioRoute: typeof AuthenticatedStudentPortfolioRoute
@@ -573,7 +628,8 @@ interface AuthenticatedStudentRouteChildren {
 
 const AuthenticatedStudentRouteChildren: AuthenticatedStudentRouteChildren = {
   AuthenticatedStudentDashboardRoute: AuthenticatedStudentDashboardRoute,
-  AuthenticatedStudentMunozaraRoute: AuthenticatedStudentMunozaraRoute,
+  AuthenticatedStudentMunozaraRoute:
+    AuthenticatedStudentMunozaraRouteWithChildren,
   AuthenticatedStudentNatijalarRoute: AuthenticatedStudentNatijalarRoute,
   AuthenticatedStudentOynaRoute: AuthenticatedStudentOynaRoute,
   AuthenticatedStudentPortfolioRoute: AuthenticatedStudentPortfolioRoute,
