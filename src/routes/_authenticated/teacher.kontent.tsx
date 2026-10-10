@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { AppShell, PageTitle } from "@/components/app/AppShell";
 import { TEACHER_NAV } from "@/components/app/navs";
-import { ContentForms } from "./teacher.dashboard";
+import { ContentForms } from "@/components/app/ContentForms";
 
 export const Route = createFileRoute("/_authenticated/teacher/kontent")({
   head: () => ({ meta: [{ title: "Kontent boshqaruvi — TRIALOG" }] }),
