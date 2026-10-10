@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { toast } from "sonner";
 import { AppShell, PageTitle } from "@/components/app/AppShell";
 import { TEACHER_NAV } from "@/components/app/navs";
 import { supabase } from "@/integrations/supabase/client";
@@ -56,35 +55,3 @@ function Page() {
   );
 }
 
-export function ContentForms() {
-  const [v, setV] = useState({ word: "", definition: "", cultural_note: "", example: "" });
-  const [t, setT] = useState({ title: "", description: "" });
-  const [x, setX] = useState({ title: "", source: "", body: "" });
-  const save = async (table: "vocab_items" | "discussion_topics" | "texts", data: Record<string, string>, reset: () => void) => {
-    const { error } = await supabase.from(table).insert(data as never);
-    if (error) toast.error(error.message); else { toast.success("Saqlandi"); reset(); }
-  };
-  const inp = "w-full rounded-md border border-input bg-background p-2 text-sm";
-  return (
-    <div className="grid gap-6 lg:grid-cols-3">
-      <form className="space-y-2 rounded-xl border border-border bg-card p-4" onSubmit={(e) => { e.preventDefault(); save("vocab_items", v, () => setV({ word: "", definition: "", cultural_note: "", example: "" })); }}>
-        <h3 className="font-semibold">Yangi so‘z (SO‘Z)</h3>
-        {(["word", "definition", "cultural_note", "example"] as const).map((k) => <input key={k} required={k === "word"} className={inp} placeholder={{ word: "So‘z", definition: "Ma’nosi", cultural_note: "Madaniy izoh", example: "Misol" }[k]} value={v[k]} onChange={(e) => setV({ ...v, [k]: e.target.value })} />)}
-        <button className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground">Qo‘shish</button>
-      </form>
-      <form className="space-y-2 rounded-xl border border-border bg-card p-4" onSubmit={(e) => { e.preventDefault(); save("texts", x, () => setX({ title: "", source: "", body: "" })); }}>
-        <h3 className="font-semibold">Yangi matn (MATN)</h3>
-        <input required className={inp} placeholder="Sarlavha" value={x.title} onChange={(e) => setX({ ...x, title: e.target.value })} />
-        <input className={inp} placeholder="Manba" value={x.source} onChange={(e) => setX({ ...x, source: e.target.value })} />
-        <textarea required rows={4} className={inp} placeholder="Matn" value={x.body} onChange={(e) => setX({ ...x, body: e.target.value })} />
-        <button className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground">Qo‘shish</button>
-      </form>
-      <form className="space-y-2 rounded-xl border border-border bg-card p-4" onSubmit={(e) => { e.preventDefault(); save("discussion_topics", t, () => setT({ title: "", description: "" })); }}>
-        <h3 className="font-semibold">Yangi mavzu (MUNOZARA)</h3>
-        <input required className={inp} placeholder="Mavzu" value={t.title} onChange={(e) => setT({ ...t, title: e.target.value })} />
-        <textarea rows={4} className={inp} placeholder="Tavsif" value={t.description} onChange={(e) => setT({ ...t, description: e.target.value })} />
-        <button className="rounded-md bg-primary px-4 py-2 text-sm text-primary-foreground">Qo‘shish</button>
-      </form>
-    </div>
-  );
-}

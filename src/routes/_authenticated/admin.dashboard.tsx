@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AppShell, PageTitle } from "@/components/app/AppShell";
 import { ADMIN_NAV } from "@/components/app/navs";
 import { supabase } from "@/integrations/supabase/client";
-import { ContentForms } from "./teacher.dashboard";
+import { ContentForms } from "@/components/app/ContentForms";
 
 export const Route = createFileRoute("/_authenticated/admin/dashboard")({
   head: () => ({ meta: [{ title: "Administrator paneli — TRIALOG" }] }),
