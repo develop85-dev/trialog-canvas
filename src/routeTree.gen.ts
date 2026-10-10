@@ -32,6 +32,7 @@ import { Route as AuthenticatedStudentSozRouteImport } from './routes/_authentic
 import { Route as AuthenticatedStudentTopshiriqlarRouteImport } from './routes/_authenticated/student.topshiriqlar'
 import { Route as AuthenticatedStudentYolRouteImport } from './routes/_authenticated/student.yol'
 import { Route as AuthenticatedTeacherDashboardRouteImport } from './routes/_authenticated/teacher.dashboard'
+import { Route as AuthenticatedTeacherKontentRouteImport } from './routes/_authenticated/teacher.kontent'
 import { Route as AuthenticatedStudentMatnIndexRouteImport } from './routes/_authenticated/student.matn.index'
 import { Route as AuthenticatedStudentMatnIdRouteImport } from './routes/_authenticated/student.matn.$id'
 import { Route as AuthenticatedStudentMunozaraIndexRouteImport } from './routes/_authenticated/student.munozara.index'
@@ -159,6 +160,12 @@ const AuthenticatedTeacherDashboardRoute =
     path: '/dashboard',
     getParentRoute: () => AuthenticatedTeacherRoute,
   } as any)
+const AuthenticatedTeacherKontentRoute =
+  AuthenticatedTeacherKontentRouteImport.update({
+    id: '/kontent',
+    path: '/kontent',
+    getParentRoute: () => AuthenticatedTeacherRoute,
+  } as any)
 const AuthenticatedStudentMatnIndexRoute =
   AuthenticatedStudentMatnIndexRouteImport.update({
     id: '/matn/',
@@ -207,6 +214,7 @@ export interface FileRoutesByFullPath {
   '/student/topshiriqlar': typeof AuthenticatedStudentTopshiriqlarRoute
   '/student/yol': typeof AuthenticatedStudentYolRoute
   '/teacher/dashboard': typeof AuthenticatedTeacherDashboardRoute
+  '/teacher/kontent': typeof AuthenticatedTeacherKontentRoute
   '/student/matn/$id': typeof AuthenticatedStudentMatnIdRoute
   '/student/munozara/$id': typeof AuthenticatedStudentMunozaraIdRoute
   '/student/matn/': typeof AuthenticatedStudentMatnIndexRoute
@@ -235,6 +243,7 @@ export interface FileRoutesByTo {
   '/student/topshiriqlar': typeof AuthenticatedStudentTopshiriqlarRoute
   '/student/yol': typeof AuthenticatedStudentYolRoute
   '/teacher/dashboard': typeof AuthenticatedTeacherDashboardRoute
+  '/teacher/kontent': typeof AuthenticatedTeacherKontentRoute
   '/student/matn/$id': typeof AuthenticatedStudentMatnIdRoute
   '/student/munozara/$id': typeof AuthenticatedStudentMunozaraIdRoute
   '/student/matn': typeof AuthenticatedStudentMatnIndexRoute
@@ -265,6 +274,7 @@ export interface FileRoutesById {
   '/_authenticated/student/topshiriqlar': typeof AuthenticatedStudentTopshiriqlarRoute
   '/_authenticated/student/yol': typeof AuthenticatedStudentYolRoute
   '/_authenticated/teacher/dashboard': typeof AuthenticatedTeacherDashboardRoute
+  '/_authenticated/teacher/kontent': typeof AuthenticatedTeacherKontentRoute
   '/_authenticated/student/matn/$id': typeof AuthenticatedStudentMatnIdRoute
   '/_authenticated/student/munozara/$id': typeof AuthenticatedStudentMunozaraIdRoute
   '/_authenticated/student/matn/': typeof AuthenticatedStudentMatnIndexRoute
@@ -295,6 +305,7 @@ export interface FileRouteTypes {
     | '/student/topshiriqlar'
     | '/student/yol'
     | '/teacher/dashboard'
+    | '/teacher/kontent'
     | '/student/matn/$id'
     | '/student/munozara/$id'
     | '/student/matn/'
@@ -323,6 +334,7 @@ export interface FileRouteTypes {
     | '/student/topshiriqlar'
     | '/student/yol'
     | '/teacher/dashboard'
+    | '/teacher/kontent'
     | '/student/matn/$id'
     | '/student/munozara/$id'
     | '/student/matn'
@@ -352,6 +364,7 @@ export interface FileRouteTypes {
     | '/_authenticated/student/topshiriqlar'
     | '/_authenticated/student/yol'
     | '/_authenticated/teacher/dashboard'
+    | '/_authenticated/teacher/kontent'
     | '/_authenticated/student/matn/$id'
     | '/_authenticated/student/munozara/$id'
     | '/_authenticated/student/matn/'
@@ -533,6 +546,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedTeacherDashboardRouteImport
       parentRoute: typeof AuthenticatedTeacherRoute
     }
+    '/_authenticated/teacher/kontent': {
+      id: '/_authenticated/teacher/kontent'
+      path: '/kontent'
+      fullPath: '/teacher/kontent'
+      preLoaderRoute: typeof AuthenticatedTeacherKontentRouteImport
+      parentRoute: typeof AuthenticatedTeacherRoute
+    }
     '/_authenticated/student/matn/': {
       id: '/_authenticated/student/matn/'
       path: '/matn'
@@ -612,10 +632,12 @@ const AuthenticatedStudentRouteWithChildren =
 
 interface AuthenticatedTeacherRouteChildren {
   AuthenticatedTeacherDashboardRoute: typeof AuthenticatedTeacherDashboardRoute
+  AuthenticatedTeacherKontentRoute: typeof AuthenticatedTeacherKontentRoute
 }
 
 const AuthenticatedTeacherRouteChildren: AuthenticatedTeacherRouteChildren = {
   AuthenticatedTeacherDashboardRoute: AuthenticatedTeacherDashboardRoute,
+  AuthenticatedTeacherKontentRoute: AuthenticatedTeacherKontentRoute,
 }
 
 const AuthenticatedTeacherRouteWithChildren =

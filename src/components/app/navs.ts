@@ -19,6 +19,7 @@ export const STUDENT_NAV: NavItem[] = [
 
 export const TEACHER_NAV: NavItem[] = [
   { to: "/teacher/dashboard", label: "Bosh sahifa", icon: Home },
+  { to: "/teacher/kontent", label: "Kontent", icon: Settings },
   { to: "/profil", label: "Profil", icon: User },
 ];
 

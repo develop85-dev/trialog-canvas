@@ -1,11 +1,7 @@
 # TRIALOG roadmap
-- [x] Phase 1: Design system + public website
-- [x] Phase 2: Auth + roles + protected routes
-- [x] Phase 3: Student dashboard + learning path
-- [x] Phase 4: SO‘Z + MATN
-- [x] Phase 5: MUNOZARA
-- [ ] Phase 6: OYNA + portfolio
-- [ ] Phase 7: Teacher panel
-- [ ] Phase 8: Admin panel
-- [ ] Phase 9: Database + RLS + persistence
-- [ ] Phase 10: Analytics + notifications + polish
+- [x] Phase 1-5: site, auth, dashboard, SO‘Z, MATN, MUNOZARA
+- [x] Phase 6: OYNA + portfolio
+- [x] Phase 7: Teacher panel (progress, activity, content)
+- [x] Phase 8: Admin panel (stats, roles, content)
+- [x] Phase 9: Database + RLS
+- [x] Topshiriqlar + Natijalar
