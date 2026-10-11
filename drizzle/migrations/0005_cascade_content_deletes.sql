@@ -1,0 +1,6 @@
+ALTER TABLE public.exercise_results DROP CONSTRAINT exercise_results_exercise_id_fkey, ADD CONSTRAINT exercise_results_exercise_id_fkey FOREIGN KEY (exercise_id) REFERENCES public.exercises(id) ON DELETE CASCADE;
+ALTER TABLE public.text_responses DROP CONSTRAINT text_responses_text_id_fkey, ADD CONSTRAINT text_responses_text_id_fkey FOREIGN KEY (text_id) REFERENCES public.texts(id) ON DELETE CASCADE;
+ALTER TABLE public.discussion_posts DROP CONSTRAINT discussion_posts_topic_id_fkey, ADD CONSTRAINT discussion_posts_topic_id_fkey FOREIGN KEY (topic_id) REFERENCES public.discussion_topics(id) ON DELETE CASCADE;
+ALTER TABLE public.discussion_posts DROP CONSTRAINT discussion_posts_parent_id_fkey, ADD CONSTRAINT discussion_posts_parent_id_fkey FOREIGN KEY (parent_id) REFERENCES public.discussion_posts(id) ON DELETE CASCADE;
+ALTER TABLE public.post_likes DROP CONSTRAINT post_likes_post_id_fkey, ADD CONSTRAINT post_likes_post_id_fkey FOREIGN KEY (post_id) REFERENCES public.discussion_posts(id) ON DELETE CASCADE;
+ALTER TABLE public.post_reports DROP CONSTRAINT post_reports_post_id_fkey, ADD CONSTRAINT post_reports_post_id_fkey FOREIGN KEY (post_id) REFERENCES public.discussion_posts(id) ON DELETE CASCADE;
