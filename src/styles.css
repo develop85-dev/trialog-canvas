@@ -104,3 +104,47 @@
 @utility animate-rise {
   animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
+
+.dark {
+  color-scheme: dark;
+
+  --background: oklch(0.18 0.025 262);
+  --foreground: oklch(0.94 0.01 258);
+
+  --card: oklch(0.22 0.03 262);
+  --card-foreground: oklch(0.94 0.01 258);
+
+  --popover: oklch(0.22 0.03 262);
+  --popover-foreground: oklch(0.94 0.01 258);
+
+  --primary: oklch(0.76 0.10 255);
+  --primary-foreground: oklch(0.18 0.025 262);
+
+  --secondary: oklch(0.28 0.03 262);
+  --secondary-foreground: oklch(0.92 0.01 258);
+
+  --muted: oklch(0.28 0.03 262);
+  --muted-foreground: oklch(0.72 0.02 258);
+
+  --accent: oklch(0.30 0.04 262);
+  --accent-foreground: oklch(0.94 0.01 258);
+
+  --destructive: oklch(0.65 0.19 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.34 0.025 262);
+  --input: oklch(0.34 0.025 262);
+  --ring: oklch(0.70 0.10 255);
+
+  --soz: oklch(0.72 0.12 255);
+  --soz-soft: oklch(0.27 0.04 255);
+
+  --matn: oklch(0.72 0.12 155);
+  --matn-soft: oklch(0.26 0.04 155);
+
+  --munozara: oklch(0.78 0.12 55);
+  --munozara-soft: oklch(0.28 0.04 60);
+
+  --oyna: oklch(0.74 0.12 300);
+  --oyna-soft: oklch(0.27 0.04 300);
+}
