@@ -2,7 +2,6 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
 import { Logo } from "@/components/site/SiteHeader";
 import { dashboardPath, fetchRoles, primaryRole } from "@/lib/auth";
 
@@ -67,11 +66,6 @@ function Page() {
     setBusy(false);
   }
 
-  async function google() {
-    setError(null);
-    const r = await lovable.auth.signInWithOAuth("google", { redirect_uri: `${window.location.origin}/kirish` });
-    if (r.error) setError("Google orqali kirishda xatolik yuz berdi.");
-  }
 
   return (
     <section className="mx-auto flex min-h-[75vh] max-w-md flex-col justify-center px-6 py-16">
@@ -119,12 +113,6 @@ function Page() {
             {mode === "login" ? "Kirish" : "Ro‘yxatdan o‘tish"}
           </button>
         </form>
-        <div className="my-5 flex items-center gap-3 text-xs text-muted-foreground">
-          <span className="h-px flex-1 bg-border" /> yoki <span className="h-px flex-1 bg-border" />
-        </div>
-        <button onClick={google} className="w-full rounded-lg border bg-card py-2.5 text-sm font-medium transition hover:bg-accent">
-          Google orqali davom etish
-        </button>
       </div>
     </section>
   );
