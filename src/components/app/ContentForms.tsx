@@ -83,7 +83,7 @@ function TextForm({ edit, done }: FormProps) {
   const s = (k: keyof typeof T0) => (e: { target: { value: string } }) => setT({ ...t, [k]: e.target.value });
   return (
     <Card title="MATN" editing={!!edit} onCancel={done} onSubmit={async () => {
-      const ok = await save("texts", { title: t.title, source: t.source, body: t.body, context: t.context, key_words: t.key_words.split(",").map((x) => x.trim()).filter(Boolean), notes: lines(t.notes), video_url: t.video_url || null, questions: qs.filter((q) => q.prompt.trim()) }, edit?.id);
+      const ok = await save("texts", { title: t.title, source: t.source, body: t.body, context: t.context, key_words: t.key_words.split(",").map((x: string) => x.trim()).filter(Boolean), notes: lines(t.notes), video_url: t.video_url || null, questions: qs.filter((q) => q.prompt.trim()) }, edit?.id);
       if (ok) { setT(T0); setQs(Q0()); done(); }
     }}>
       <div className="grid gap-3 md:grid-cols-2">
