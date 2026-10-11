@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 const inp = "w-full rounded-md border border-input bg-background p-2 text-sm";
 const lines = (s: string) => s.split("\n").map((x) => x.trim()).filter(Boolean);
 
-function F({ label, hint, children }: { label: string; hint?: string; children: ReactNode }) {
+function F({ label, hint, children }: { label: string; hint?: string | undefined; children: ReactNode }) {
   return (
     <label className="block space-y-1">
       <span className="text-sm font-medium">{label}</span>
@@ -94,7 +94,7 @@ function TextForm() {
             <input className={inp} placeholder="Savol matni" value={q.prompt} onChange={(e) => setQs(qs.map((x, j) => j === i ? { ...x, prompt: e.target.value } : x))} />
           </div>
         ))}
-        <button type="button" className="text-sm text-primary" onClick={() => setQs([...qs, { type: QTYPES[0], prompt: "" }])}>+ Savol qo‘shish</button>
+        <button type="button" className="text-sm text-primary" onClick={() => setQs([...qs, { type: "Faktik tushunish", prompt: "" }])}>+ Savol qo‘shish</button>
       </div>
     </Card>
   );
@@ -111,7 +111,7 @@ function ExerciseForm() {
   return (
     <Card title="SO‘Z — yangi mashq" onSubmit={async () => {
       const valid = qs.filter((q) => q.prompt.trim() && q.answer.trim());
-      if (!valid.length) return toast.error("Kamida bitta savol va javob kiriting");
+      if (!valid.length) { toast.error("Kamida bitta savol va javob kiriting"); return; }
       const questions = valid.map((q) => {
         const opts = lines(q.options);
         if (hasOpts && !opts.includes(q.answer.trim())) opts.unshift(q.answer.trim());
