@@ -2,15 +2,11 @@
 
 Implement exactly the screenshot and nothing else
 
-This project was built with [Lovable](https://lovable.dev).
+This project was built by Dadaboyev Abduraxmon
 
-## Build with Lovable
+## Build by Abduraxmon
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/e4c7c96a-72f6-4d7a-b3a3-b79b48ac5029).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+You can visit web-site by this link: trialog-uz.netlify.app
 
 ## Development
 
