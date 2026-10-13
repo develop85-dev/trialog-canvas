@@ -15,7 +15,10 @@ function Page() {
   const { data } = useQuery(progressQuery(user.id));
   return (
     <AppShell nav={STUDENT_NAV}>
-      <PageTitle title="O‘quv yo‘li" sub="To‘rt modul — yagona pedagogik sikl: o‘z madaniyati → o‘zga madaniyat → shaxsiy pozitsiya." />
+      <PageTitle
+        title="O‘quv yo‘li"
+        sub="To‘rt modul — yagona pedagogik sikl: o‘z madaniyati → o‘zga madaniyat → shaxsiy pozitsiya."
+      />
       <div className="max-w-3xl">{data && <LearningPath modules={data.modules} />}</div>
     </AppShell>
   );

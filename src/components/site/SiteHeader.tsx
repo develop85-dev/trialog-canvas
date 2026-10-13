@@ -2,18 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { dashboardPath, fetchRoles, primaryRole, useSession } from "@/lib/auth";
-
-const NAV = [
-  { to: "/", label: "Bosh sahifa" },
-  { to: "/haqida", label: "TRIALOG haqida" },
-  { to: "/metodika", label: "Metodika" },
-  { to: "/modullar", label: "Modullar" },
-  { to: "/ilmiy-asos", label: "Ilmiy asos" },
-  { to: "/kirish", label: "Kirish" },
-] as const;
+import { useLanguage, LanguageSwitcher } from "@/lib/i18n";
 
 function ThemeToggle() {
   const [dark, setDark] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const saved = localStorage.getItem("trialog-theme");
@@ -35,11 +28,11 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={dark ? "Yorug‘ rejimga o‘tish" : "Tungi rejimga o‘tish"}
-      title={dark ? "Light mode" : "Dark mode"}
-      className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-accent"
+      aria-label={dark ? t.theme.light : t.theme.dark}
+      title={dark ? t.theme.light : t.theme.dark}
+      className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-accent"
     >
-      {dark ? <Sun size={20} /> : <Moon size={20} />}
+      {dark ? <Sun size={18} /> : <Moon size={18} />}
     </button>
   );
 }
@@ -53,9 +46,7 @@ export function Logo() {
         <span className="rounded-sm bg-munozara" />
         <span className="rounded-sm bg-oyna" />
       </span>
-      <span className="text-lg font-semibold tracking-[0.18em] text-primary">
-        TRIALOG
-      </span>
+      <span className="text-lg font-semibold tracking-[0.18em] text-primary">TRIALOG</span>
     </Link>
   );
 }
@@ -64,6 +55,16 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const { session } = useSession();
   const [dash, setDash] = useState<ReturnType<typeof dashboardPath> | null>(null);
+  const { t } = useLanguage();
+
+  const navLinks = [
+    { to: "/", label: t.nav.home },
+    { to: "/haqida", label: t.nav.about },
+    { to: "/metodika", label: t.nav.methodology },
+    { to: "/modullar", label: t.nav.modules },
+    { to: "/ilmiy-asos", label: t.nav.science },
+    { to: "/kirish", label: t.nav.login },
+  ] as const;
 
   useEffect(() => {
     if (!session) return setDash(null);
@@ -76,7 +77,7 @@ export function SiteHeader() {
         <Logo />
 
         <nav className="hidden items-center gap-1 lg:flex">
-          {NAV.map((n) => (
+          {navLinks.map((n) => (
             <Link
               key={n.to}
               to={n.to}
@@ -95,17 +96,18 @@ export function SiteHeader() {
               to={dash ?? "/kirish"}
               className="inline-flex rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-card transition hover:opacity-90"
             >
-              {dash ? "Shaxsiy kabinet" : "Platformaga kirish"}
+              {dash ? t.nav.dashboard : t.nav.login}
             </Link>
           </div>
 
+          <LanguageSwitcher />
           <ThemeToggle />
 
           <button
             type="button"
             className="rounded-md p-2 text-foreground lg:hidden"
             onClick={() => setOpen(!open)}
-            aria-label={open ? "Menyuni yopish" : "Menyuni ochish"}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
           >
             {open ? <X /> : <Menu />}
           </button>
@@ -113,8 +115,8 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav className="flex flex-col border-t border-border px-6 py-3 lg:hidden">
-          {NAV.map((n) => (
+        <nav className="flex flex-col border-t border-border px-6 py-4 lg:hidden">
+          {navLinks.map((n) => (
             <Link
               key={n.to}
               to={n.to}
@@ -125,12 +127,17 @@ export function SiteHeader() {
             </Link>
           ))}
 
+          <div className="mt-3 flex items-center justify-between border-t border-border pt-3">
+            <span className="text-xs text-muted-foreground">Til / Язык:</span>
+            <LanguageSwitcher />
+          </div>
+
           <Link
             to={dash ?? "/kirish"}
             onClick={() => setOpen(false)}
-            className="mt-2 rounded-lg bg-primary px-4 py-2 text-center text-sm font-medium text-primary-foreground"
+            className="mt-3 rounded-lg bg-primary px-4 py-2.5 text-center text-sm font-medium text-primary-foreground shadow-card"
           >
-            {dash ? "Shaxsiy kabinet" : "Platformaga kirish"}
+            {dash ? t.nav.dashboard : t.nav.login}
           </Link>
         </nav>
       )}
@@ -139,16 +146,14 @@ export function SiteHeader() {
 }
 
 export function SiteFooter() {
+  const { t } = useLanguage();
+
   return (
     <footer className="border-t border-border bg-card">
       <div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-10 md:flex-row md:items-center md:justify-between">
         <Logo />
-        <p className="text-sm text-muted-foreground">
-          Lingvomadaniy kompetensiyani rivojlantirish uchun elektron platforma
-        </p>
-        <p className="text-xs text-muted-foreground">
-          © {new Date().getFullYear()} TRIALOG
-        </p>
+        <p className="text-sm text-muted-foreground">{t.footer.tagline}</p>
+        <p className="text-xs text-muted-foreground">{t.footer.rights}</p>
       </div>
     </footer>
   );

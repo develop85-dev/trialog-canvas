@@ -1,3 +1,5 @@
+import { DICTIONARY, type Language } from "./i18n";
+
 export type ModuleKey = "soz" | "matn" | "munozara" | "oyna";
 
 export interface TrialogModule {
@@ -12,51 +14,51 @@ export interface TrialogModule {
   ring: string;
 }
 
-export const MODULES: TrialogModule[] = [
-  {
-    key: "soz",
-    name: "SO‘Z",
-    component: "Lingvistik komponent",
-    block: "Leksik-frazeologik blok",
-    description:
-      "Til birliklari, frazeologizmlar, paremiyalar va madaniy jihatdan belgilangan leksik birliklar bilan ishlash.",
+const MODULE_STYLES: Record<ModuleKey, { text: string; bg: string; soft: string; ring: string }> = {
+  soz: {
     text: "text-soz",
     bg: "bg-soz",
     soft: "bg-soz-soft",
     ring: "border-soz",
   },
-  {
-    key: "matn",
-    name: "MATN",
-    component: "Madaniy-bilim komponenti",
-    block: "Matn / madaniy blok",
-    description: "Matnlar, videolar va madaniy materiallar orqali kontekstni anglash.",
+  matn: {
     text: "text-matn",
     bg: "bg-matn",
     soft: "bg-matn-soft",
     ring: "border-matn",
   },
-  {
-    key: "munozara",
-    name: "MUNOZARA",
-    component: "Kommunikativ-faoliyat komponenti",
-    block: "Nutq odobi / kommunikativ blok",
-    description:
-      "Munozara, fikr almashish va madaniyatlararo muloqot ko‘nikmalarini rivojlantirish.",
+  munozara: {
     text: "text-munozara",
     bg: "bg-munozara",
     soft: "bg-munozara-soft",
     ring: "border-munozara",
   },
-  {
-    key: "oyna",
-    name: "OYNA",
-    component: "Refleksiv komponent",
-    block: "Qo‘shimcha refleksiv komponent",
-    description: "O‘z bilimlari, tajribasi va rivojlanishini tahlil qilish.",
+  oyna: {
     text: "text-oyna",
     bg: "bg-oyna",
     soft: "bg-oyna-soft",
     ring: "border-oyna",
   },
-];
+};
+
+export function getModules(lang: Language = "uz"): TrialogModule[] {
+  const dict = DICTIONARY[lang] ?? DICTIONARY.uz;
+  const keys: ModuleKey[] = ["soz", "matn", "munozara", "oyna"];
+  return keys.map((key) => {
+    const detail = dict.moduleDetails[key];
+    const style = MODULE_STYLES[key];
+    return {
+      key,
+      name: detail.name,
+      component: detail.component,
+      block: detail.block,
+      description: detail.description,
+      text: style.text,
+      bg: style.bg,
+      soft: style.soft,
+      ring: style.ring,
+    };
+  });
+}
+
+export const MODULES: TrialogModule[] = getModules("uz");

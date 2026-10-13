@@ -15,6 +15,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { supabase } from "@/integrations/supabase/client";
 import { SiteHeader, SiteFooter } from "../components/site/SiteHeader";
+import { LanguageProvider } from "@/lib/i18n";
 
 function NotFoundComponent() {
   return (
@@ -82,7 +83,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "TRIALOG — Elektron platforma" },
-      { name: "description", content: "Lingvomadaniy kompetensiyani rivojlantirish uchun elektron platforma." },
+      {
+        name: "description",
+        content: "Lingvomadaniy kompetensiyani rivojlantirish uchun elektron platforma.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -132,23 +136,21 @@ function RootComponent() {
     return () => data.subscription.unsubscribe();
   }, [router, queryClient]);
 
-  if (inApp) {
-    return (
-      <QueryClientProvider client={queryClient}>
-        <Outlet />
-      </QueryClientProvider>
-    );
-  }
-
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col">
-        <SiteHeader />
-        <main className="flex-1">
+      <LanguageProvider>
+        {inApp ? (
           <Outlet />
-        </main>
-        <SiteFooter />
-      </div>
+        ) : (
+          <div className="flex min-h-screen flex-col">
+            <SiteHeader />
+            <main className="flex-1">
+              <Outlet />
+            </main>
+            <SiteFooter />
+          </div>
+        )}
+      </LanguageProvider>
     </QueryClientProvider>
   );
 }

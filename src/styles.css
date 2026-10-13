@@ -39,8 +39,10 @@
   --color-munozara-soft: var(--munozara-soft);
   --color-oyna: var(--oyna);
   --color-oyna-soft: var(--oyna-soft);
-  --shadow-card: 0 1px 2px oklch(0.25 0.05 260 / 0.04), 0 8px 24px -12px oklch(0.25 0.05 260 / 0.12);
-  --shadow-lift: 0 2px 4px oklch(0.25 0.05 260 / 0.05), 0 20px 40px -20px oklch(0.25 0.05 260 / 0.25);
+  --shadow-card:
+    0 1px 2px oklch(0.25 0.05 260 / 0.04), 0 8px 24px -12px oklch(0.25 0.05 260 / 0.12);
+  --shadow-lift:
+    0 2px 4px oklch(0.25 0.05 260 / 0.05), 0 20px 40px -20px oklch(0.25 0.05 260 / 0.25);
 }
 
 :root {
@@ -75,7 +77,9 @@
 }
 
 @layer base {
-  * { border-color: var(--color-border); }
+  * {
+    border-color: var(--color-border);
+  }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -98,8 +102,14 @@
 }
 
 @keyframes rise {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @utility animate-rise {
   animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
@@ -117,7 +127,7 @@
   --popover: oklch(0.22 0.03 262);
   --popover-foreground: oklch(0.94 0.01 258);
 
-  --primary: oklch(0.76 0.10 255);
+  --primary: oklch(0.76 0.1 255);
   --primary-foreground: oklch(0.18 0.025 262);
 
   --secondary: oklch(0.28 0.03 262);
@@ -126,7 +136,7 @@
   --muted: oklch(0.28 0.03 262);
   --muted-foreground: oklch(0.72 0.02 258);
 
-  --accent: oklch(0.30 0.04 262);
+  --accent: oklch(0.3 0.04 262);
   --accent-foreground: oklch(0.94 0.01 258);
 
   --destructive: oklch(0.65 0.19 25);
@@ -134,7 +144,7 @@
 
   --border: oklch(0.34 0.025 262);
   --input: oklch(0.34 0.025 262);
-  --ring: oklch(0.70 0.10 255);
+  --ring: oklch(0.7 0.1 255);
 
   --soz: oklch(0.72 0.12 255);
   --soz-soft: oklch(0.27 0.04 255);

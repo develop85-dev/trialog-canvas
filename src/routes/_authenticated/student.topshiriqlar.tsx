@@ -27,17 +27,41 @@ function Page() {
     })();
   }, []);
   const item = (title: string, done: boolean, link: React.ReactNode) => (
-    <li key={title} className="flex items-center justify-between rounded-xl border border-border bg-card p-4">
-      <span>{title}</span>{done ? <span className="text-sm text-muted-foreground">✓ Bajarildi</span> : link}
+    <li
+      key={title}
+      className="flex items-center justify-between rounded-xl border border-border bg-card p-4"
+    >
+      <span>{title}</span>
+      {done ? <span className="text-sm text-muted-foreground">✓ Bajarildi</span> : link}
     </li>
   );
   return (
     <AppShell nav={STUDENT_NAV}>
       <PageTitle title="Topshiriqlar" sub="Bajarilishi kerak bo‘lgan ishlar" />
       <h2 className="mb-2 font-semibold">SO‘Z mashqlari</h2>
-      <ul className="mb-6 space-y-2">{ex.map((x) => item(x.title, x.done, <Link to="/student/soz" className="text-sm text-primary">Boshlash →</Link>))}</ul>
+      <ul className="mb-6 space-y-2">
+        {ex.map((x) =>
+          item(
+            x.title,
+            x.done,
+            <Link to="/student/soz" className="text-sm text-primary">
+              Boshlash →
+            </Link>,
+          ),
+        )}
+      </ul>
       <h2 className="mb-2 font-semibold">MATN topshiriqlari</h2>
-      <ul className="space-y-2">{tx.map((x) => item(x.title, x.done, <Link to="/student/matn/$id" params={{ id: x.id }} className="text-sm text-primary">Boshlash →</Link>))}</ul>
+      <ul className="space-y-2">
+        {tx.map((x) =>
+          item(
+            x.title,
+            x.done,
+            <Link to="/student/matn/$id" params={{ id: x.id }} className="text-sm text-primary">
+              Boshlash →
+            </Link>,
+          ),
+        )}
+      </ul>
     </AppShell>
   );
 }

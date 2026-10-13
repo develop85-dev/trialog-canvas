@@ -17,7 +17,9 @@ export const progressQuery = (userId: string) =>
         .select("module, percent, updated_at")
         .eq("user_id", userId);
       if (error) throw error;
-      const map = Object.fromEntries((data ?? []).map((r) => [r.module, r.percent])) as Partial<Record<ModuleKey, number>>;
+      const map = Object.fromEntries((data ?? []).map((r) => [r.module, r.percent])) as Partial<
+        Record<ModuleKey, number>
+      >;
       const modules = MODULES.map((m) => ({ ...m, percent: map[m.key] ?? 0 }));
       const overall = Math.round(modules.reduce((a, m) => a + m.percent, 0) / modules.length);
       return { modules, overall };
